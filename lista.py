@@ -1,12 +1,12 @@
-import os
+import subprocess
 import platform
 
-# Função para limpar a tela de forma cross-platform
+# Função para limpar a tela de forma cross-platform usando subprocess
 def limpar_tela():
     if platform.system() == "Windows":
-        os.system("cls")
+        subprocess.run("cls", shell=True)
     else:
-        os.system("clear")
+        subprocess.run("clear", shell=True)
 
 lista = []
 
@@ -19,7 +19,7 @@ while True:
         inserir = input('Qual item deseja inserir? ').lower()
         lista.append(inserir)
         limpar_tela()
-        print(f' "{inserir}" adicionado a lista.\n')
+        print(f'"{inserir}" adicionado à lista.\n')
         
     elif pergunta ==  'listar':
         limpar_tela()
@@ -40,19 +40,13 @@ while True:
                 deletar = int(input('Qual indice deseja deletar? '))
                 valor_removido = lista.pop(deletar)
                 limpar_tela()
-                print(f'{valor_removido} foi removido da lista.\n')
+                print(f'"{valor_removido}" foi removido da lista.\n')
             except:
-                print('Indice inválido')
+                print('Índice inválido')
+                
     elif pergunta == 'sair':
         print('Encerrando programa...')
         break
-        
-        
-  
 
-        
-
-
-    
-
-    
+    else:
+        print('Opção inválida, escolha inserir, listar, deletar ou sair.\n')
